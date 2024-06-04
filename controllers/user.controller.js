@@ -89,4 +89,16 @@ module.exports = {
       statusMessage(res, 404, false, error.message);
     }
   },
+
+deleteUser: async (req, res) => {
+  try {
+      const id = req.params.id;
+
+      const user = await User.destroy({ where: { id }});
+      
+      statusMessage(res, 200, true, "Delete successful", user);
+  } catch (error) {
+    statusMessage(res, 404, false, error.message);
+  }
+},
 };
